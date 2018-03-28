@@ -2,17 +2,19 @@ import React from 'react';
 import { Admin, Delete, jsonServerRestClient, Resource } from 'admin-on-rest';
 import PostIcon from 'material-ui/svg-icons/action/book';
 import UserIcon from 'material-ui/svg-icons/social/group';
-import CountryIcon from 'material-ui/svg-icons/action/language'
+import CountryIcon from 'material-ui/svg-icons/action/language';
 
 import { PostCreate, PostEdit, PostList } from './posts';
 import { UserList } from './users';
-import { CountryList } from './countries'
-import { FeeList } from './fees'
+
+import { CountryList } from './countries';
+import { FeeList, FeeShow, FeeEdit, FeeCreate } from './fees';
+
 import Dashboard from './Dashboard';
 import authClient from './authClient';
 
 // const restClient = 'http://jsonplaceholder.typicode.com'
-const restClient = 'http://localhost:8001'
+const restClient = 'http://localhost:8001';
 const App = () => (
   <Admin
     authClient={authClient}
@@ -28,8 +30,15 @@ const App = () => (
       {/*icon={PostIcon}*/}
     {/*/>*/}
     {/*<Resource name="users" list={UserList} icon={UserIcon} />*/}
-    <Resource name="country" list={CountryList} icon={CountryIcon} />
-    <Resource name="fees" list={FeeList} />
+    <Resource
+      name="fees"
+      list={FeeList}
+      edit={FeeEdit}
+      show={FeeShow}
+      create={FeeCreate}
+      remove={Delete}
+    />
+    <Resource name="countries" list={CountryList} icon={CountryIcon} />
   </Admin>
 );
 
