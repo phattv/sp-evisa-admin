@@ -14,7 +14,10 @@ import Dashboard from './Dashboard';
 import authClient from './authClient';
 
 // const restClient = 'http://jsonplaceholder.typicode.com'
-const restClient = 'http://localhost:8001';
+const restClient =
+  process.env.NODE_ENV === 'production'
+    ? 'http://api.evisa-vn.com'
+    : 'http://localhost:8001';
 const App = () => (
   <Admin
     authClient={authClient}
@@ -22,12 +25,12 @@ const App = () => (
     restClient={jsonServerRestClient(restClient)}
   >
     {/*<Resource*/}
-      {/*name="posts"*/}
-      {/*list={PostList}*/}
-      {/*edit={PostEdit}*/}
-      {/*create={PostCreate}*/}
-      {/*remove={Delete}*/}
-      {/*icon={PostIcon}*/}
+    {/*name="posts"*/}
+    {/*list={PostList}*/}
+    {/*edit={PostEdit}*/}
+    {/*create={PostCreate}*/}
+    {/*remove={Delete}*/}
+    {/*icon={PostIcon}*/}
     {/*/>*/}
     {/*<Resource name="users" list={UserList} icon={UserIcon} />*/}
     <Resource
