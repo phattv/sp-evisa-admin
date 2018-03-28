@@ -1,0 +1,8 @@
+- `gcloud auth login`
+- `gcloud container images list-tags gcr.io/evisa-198403/evisa-admin` (get {DOCKER_TAG})
+- `docker build -t gcr.io/evisa-198403/evisa-admin:{NEXT_DOCKER_TAG} .`
+- `docker run --rm -p 8002:8002 gcr.io/evisa-198403/evisa-admin:{NEXT_DOCKER_TAG}` (open localhost on browser to test)
+- `gcloud docker -- push gcr.io/evisa-198403/evisa-admin:{NEXT_DOCKER_TAG}`
+- `vim deployment.yaml`
+- update `- image: gcr.io/evisa-198403/evisa-admin:{NEXT_DOCKER_TAG}` and save
+- `kubectl apply -f .`
