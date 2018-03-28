@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "admin-on-rest": "^1.4.0",
+    "http-server": "^0.11.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
@@ -14,6 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "start:prod": "http-server build -p 8002 -o",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
