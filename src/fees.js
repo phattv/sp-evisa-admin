@@ -7,23 +7,19 @@ import {
   EditButton,
   Filter,
   List,
-  LongTextInput,
   NumberField,
   NumberInput,
   ReferenceField,
   ReferenceInput,
   required,
-  Responsive,
-  SelectField,
   SelectInput,
   Show,
   SimpleForm,
-  SimpleList,
   SimpleShowLayout,
   TextField,
-  TextInput,
 } from 'admin-on-rest';
 
+// TODO: Responsive, SimpleList
 const FeeList = props => (
   <div>
     Legend:
@@ -32,16 +28,21 @@ const FeeList = props => (
     <p>6MM: 6 Month Multiple - 1YM: 1 Year Multiple</p>
     <List {...props}>
       <Datagrid>
-        <ReferenceField label="Country" source="country_id" reference="countries">
+        <NumberField source="type" />
+        <ReferenceField
+          label="Country"
+          source="country_id"
+          reference="countries"
+        >
           <TextField source="name" />
         </ReferenceField>
-        <TextField source="type" />
-        <TextField source="one_month_single" label="1MS" />
-        <TextField source="one_month_multiple" label="1MM" />
-        <TextField source="three_month_single" label="3MS" />
-        <TextField source="three_month_multiple" label="3MM" />
-        <TextField source="six_month_multiple" label="6MM" />
-        <TextField source="one_year_multiple" label="1YM" />
+        <NumberField source="type" />
+        <NumberField source="one_month_single" label="1MS" />
+        <NumberField source="one_month_multiple" label="1MM" />
+        <NumberField source="three_month_single" label="3MS" />
+        <NumberField source="three_month_multiple" label="3MM" />
+        <NumberField source="six_month_multiple" label="6MM" />
+        <NumberField source="one_year_multiple" label="1YM" />
         <EditButton />
       </Datagrid>
     </List>
@@ -54,11 +55,12 @@ const FeeShow = props => (
       <TextField source="type" />
     </SimpleShowLayout>
   </Show>
-)
+);
 
 const FeeEdit = props => (
   <Edit title={'Edit'} {...props}>
     <SimpleForm>
+      <DisabledInput source="id" />
       <ReferenceInput
         label="ISO"
         source="country_id"
