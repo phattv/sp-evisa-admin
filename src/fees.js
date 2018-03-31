@@ -32,7 +32,7 @@ const FeeList = props => (
     <p>6MM: 6 Month Multiple - 1YM: 1 Year Multiple</p>
     <List {...props}>
       <Datagrid>
-        <ReferenceField label="ISO" source="country_id" reference="countries">
+        <ReferenceField label="Country" source="country_id" reference="countries">
           <TextField source="name" />
         </ReferenceField>
         <TextField source="type" />
@@ -42,14 +42,11 @@ const FeeList = props => (
         <TextField source="three_month_multiple" label="3MM" />
         <TextField source="six_month_multiple" label="6MM" />
         <TextField source="one_year_multiple" label="1YM" />
+        <EditButton />
       </Datagrid>
     </List>
   </div>
 );
-
-const FeeTitle = ({ record }) => {
-  return <span>{record ? `"${record.name}"` : ''}</span>;
-};
 
 const FeeShow = props => (
   <Show {...props}>
@@ -60,7 +57,7 @@ const FeeShow = props => (
 )
 
 const FeeEdit = props => (
-  <Edit title={<FeeTitle />} {...props}>
+  <Edit title={'Edit'} {...props}>
     <SimpleForm>
       <ReferenceInput
         label="ISO"
