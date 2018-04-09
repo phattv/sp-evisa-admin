@@ -5,7 +5,6 @@ import {
   DisabledInput,
   Edit,
   EditButton,
-  Filter,
   List,
   NumberField,
   NumberInput,

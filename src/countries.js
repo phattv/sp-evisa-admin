@@ -1,11 +1,9 @@
 import React from 'react';
 import {
   Datagrid,
-  Filter,
   List,
   NumberField,
   TextField,
-  TextInput,
 } from 'admin-on-rest';
 
 export const CountryList = props => (

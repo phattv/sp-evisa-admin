@@ -1,8 +1,10 @@
 import React from 'react';
 import { Admin, Delete, jsonServerRestClient, Resource } from 'admin-on-rest';
 import CountryIcon from 'material-ui/svg-icons/action/language';
+import UserIcon from 'material-ui/svg-icons/action/account-box';
 
 import { CountryList } from './countries';
+import { UserList } from './users';
 import { FeeList, FeeShow, FeeEdit, FeeCreate } from './fees';
 
 import Dashboard from './Dashboard';
@@ -27,6 +29,7 @@ const App = () => (
       remove={Delete}
     />
     <Resource name="countries" list={CountryList} icon={CountryIcon} />
+    <Resource name="users" list={UserList} icon={UserIcon} />
   </Admin>
 );
 
