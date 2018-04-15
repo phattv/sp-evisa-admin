@@ -2,10 +2,12 @@ import React from 'react';
 import { Admin, Delete, jsonServerRestClient, Resource } from 'admin-on-rest';
 import CountryIcon from 'material-ui/svg-icons/action/language';
 import UserIcon from 'material-ui/svg-icons/action/account-box';
+import FeedbackIcon from 'material-ui/svg-icons/action/feedback';
 
 import { CountryList } from './countries';
-import { UserList } from './users';
 import { FeeList, FeeShow, FeeEdit, FeeCreate } from './fees';
+import { UserList } from './users';
+import { FeedbackList } from './feedback';
 
 import Dashboard from './Dashboard';
 import authClient from './authClient';
@@ -14,6 +16,7 @@ const restClient =
   process.env.NODE_ENV === 'production'
     ? 'http://api.evisa-vn.com'
     : 'http://localhost:8001';
+
 const App = () => (
   <Admin
     authClient={authClient}
@@ -30,6 +33,7 @@ const App = () => (
     />
     <Resource name="countries" list={CountryList} icon={CountryIcon} />
     <Resource name="users" list={UserList} icon={UserIcon} />
+    <Resource name="feedback" list={FeedbackList} icon={FeedbackIcon} />
   </Admin>
 );
 
