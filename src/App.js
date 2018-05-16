@@ -3,11 +3,13 @@ import { Admin, Delete, jsonServerRestClient, Resource } from 'admin-on-rest';
 import CountryIcon from 'material-ui/svg-icons/action/language';
 import UserIcon from 'material-ui/svg-icons/action/account-box';
 import FeedbackIcon from 'material-ui/svg-icons/action/feedback';
+import OrderIcon from 'material-ui/svg-icons/action/receipt';
 
 import { CountryList } from './countries';
 import { FeeList, FeeShow, FeeEdit, FeeCreate } from './fees';
 import { UserList } from './users';
 import { FeedbackList } from './feedback';
+import { OrderList } from './orders'
 
 import Dashboard from './Dashboard';
 import authClient from './authClient';
@@ -34,6 +36,7 @@ const App = () => (
     <Resource name="countries" list={CountryList} icon={CountryIcon} />
     <Resource name="users" list={UserList} icon={UserIcon} />
     <Resource name="feedback" list={FeedbackList} icon={FeedbackIcon} />
+    <Resource name="orders" list={OrderList} icon={OrderIcon} />
   </Admin>
 );
 
