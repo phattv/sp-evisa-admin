@@ -14,11 +14,7 @@ export const OrderList = props => (
     <Datagrid>
       <TextField source="id" />
       <TextField source="price" />
-      <ReferenceField
-        label="Country"
-        source="country_id"
-        reference="countries"
-      >
+      <ReferenceField label="Country" source="country_id" reference="countries">
         <TextField source="name" />
       </ReferenceField>
       <TextField source="quantity" />
@@ -31,21 +27,39 @@ export const OrderList = props => (
       <TextField source="airport_fast_track" />
       <TextField source="car_pick_up" />
       <BooleanField source="private_visa_letter" />
-      <FunctionField label="Contact" render={record =>
-        `${record.contact.name} - ${record.contact.email} - ${record.contact.phone}`}
+      <FunctionField
+        label="Contact"
+        render={record =>
+          `Name: ${record.contact.name}\nEmail: ${
+            record.contact.email
+          }\nPhone: ${record.contact.phone}`
+        }
+        style={{
+          whiteSpace: 'pre-line',
+        }}
       />
-      <FunctionField label="Applicants" render={record => {
-        const applicants = record.applicants
-        let contactString = ''
-        Object.keys(applicants).forEach(key => {
-            contactString += `${applicants[key].name} - ${applicants[key].gender} - ${applicants[key].passport} - ${applicants[key].passport_expiry} - ${applicants[key].birthday} - ${applicants[key].country_id}`
+      <FunctionField
+        label="Applicants"
+        render={record => {
+          const applicants = record.applicants;
+          let contactString = '';
+          Object.keys(applicants).forEach(key => {
+            contactString += `APPLICANT ${parseInt(key) + 1}: Name: ${
+              applicants[key].name
+            } - Gender: ${applicants[key].gender} - Birthday: ${
+              applicants[key].birthday
+            } - Passport: ${applicants[key].passport} - Passport expiry: ${
+              applicants[key].passport_expiry
+            } - Country id: ${applicants[key].country_id}`;
             if (key < Object.keys(applicants).length - 1) {
-              contactString += ' | '
+              contactString += '\n\n';
             }
-          }
-        )
-        return contactString
-      }}
+          });
+          return contactString;
+        }}
+        style={{
+          whiteSpace: 'pre-line',
+        }}
       />
       <TextField source="flight_number" />
     </Datagrid>
