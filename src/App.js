@@ -9,7 +9,7 @@ import { CountryList } from './countries';
 import { FeeList, FeeShow, FeeEdit, FeeCreate } from './fees';
 import { UserList } from './users';
 import { FeedbackList } from './feedback';
-import { OrderList } from './orders'
+import { OrderList, OrderEdit } from './orders'
 
 import Dashboard from './Dashboard';
 import authClient from './authClient';
@@ -36,7 +36,7 @@ const App = () => (
     <Resource name="countries" list={CountryList} icon={CountryIcon} />
     <Resource name="users" list={UserList} icon={UserIcon} />
     <Resource name="feedback" list={FeedbackList} icon={FeedbackIcon} />
-    <Resource name="orders" list={OrderList} icon={OrderIcon} />
+    <Resource name="orders" list={OrderList} edit={OrderEdit} icon={OrderIcon} />
   </Admin>
 );
 

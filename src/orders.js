@@ -7,13 +7,19 @@ import {
   DateField,
   ReferenceField,
   FunctionField,
+  Edit,
+  SimpleForm,
+  DisabledInput,
+  SelectInput,
+  EditButton,
 } from 'admin-on-rest';
 
-export const OrderList = props => (
+const OrderList = props => (
   <List {...props}>
     <Datagrid>
       <TextField source="id" />
       <TextField source="price" />
+      <TextField source="status" />
       <ReferenceField label="Country" source="country_id" reference="countries">
         <TextField source="name" />
       </ReferenceField>
@@ -30,7 +36,7 @@ export const OrderList = props => (
       <FunctionField
         label="Contact"
         render={record =>
-          `Name: ${record.contact.name}\nEmail: ${
+          record && record.contact && `Name: ${record.contact.name}\nEmail: ${
             record.contact.email
           }\nPhone: ${record.contact.phone}`
         }
@@ -43,25 +49,62 @@ export const OrderList = props => (
         render={record => {
           const applicants = record.applicants;
           let contactString = '';
-          Object.keys(applicants).forEach(key => {
-            contactString += `APPLICANT ${parseInt(key) + 1}: Name: ${
-              applicants[key].name
-            } - Gender: ${applicants[key].gender} - Birthday: ${
-              applicants[key].birthday
-            } - Passport: ${applicants[key].passport} - Passport expiry: ${
-              applicants[key].passport_expiry
-            } - Country id: ${applicants[key].country_id}`;
-            if (key < Object.keys(applicants).length - 1) {
-              contactString += '\n\n';
-            }
-          });
-          return contactString;
+          if (applicants) {
+            Object.keys(applicants).forEach(key => {
+              contactString += `APPLICANT ${parseInt(key) + 1}: Name: ${
+                applicants[key].name
+                } - Gender: ${applicants[key].gender} - Birthday: ${
+                applicants[key].birthday
+                } - Passport: ${applicants[key].passport} - Passport expiry: ${
+                applicants[key].passport_expiry
+                } - Country id: ${applicants[key].country_id}`;
+              if (key < Object.keys(applicants).length - 1) {
+                contactString += '\n\n';
+              }
+            });
+            return contactString;
+          }
         }}
         style={{
           whiteSpace: 'pre-line',
         }}
       />
       <TextField source="flight_number" />
+      <EditButton />
     </Datagrid>
   </List>
 );
+
+const OrderEdit = props => (
+  <Edit title={'Edit'} {...props}>
+    <SimpleForm>
+      <DisabledInput source="id" />
+      <DisabledInput source="price" />
+      <SelectInput
+        source="status"
+        choices={[
+          { id: 'unpaid', name: 'unpaid' },
+          { id: 'paid', name: 'paid' },
+          { id: 'ignore', name: 'ignore' },
+        ]}
+      />
+      <DisabledInput source="quantity" />
+      <DisabledInput source="country_id" />
+      <DisabledInput source="type" />
+      <DisabledInput source="purpose" />
+      <DisabledInput source="processing_time" />
+      <DisabledInput source="airport" />
+      <DisabledInput source="arrival_date" />
+      <DisabledInput source="departure_date" />
+      <DisabledInput source="airport_fast_track" />
+      <DisabledInput source="car_pick_up" />
+      <DisabledInput source="private_visa_letter" />
+      <DisabledInput source="flight_number" />
+    </SimpleForm>
+  </Edit>
+);
+
+export {
+  OrderList,
+  OrderEdit,
+}
