@@ -12,10 +12,25 @@ import {
   DisabledInput,
   SelectInput,
   EditButton,
+  Filter,
+  TextInput,
 } from 'admin-on-rest';
 
+const OrderFilter = (props) => (
+  <Filter {...props}>
+    <SelectInput
+      source="status"
+      choices={[
+        { id: 'unpaid', name: 'unpaid' },
+        { id: 'paid', name: 'paid' },
+        { id: 'ignore', name: 'ignore' },
+      ]}
+    />
+  </Filter>
+);
+
 const OrderList = props => (
-  <List {...props}>
+  <List {...props} filters={<OrderFilter />}>
     <Datagrid>
       <TextField source="id" />
       <TextField source="price" />

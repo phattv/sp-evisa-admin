@@ -9,3 +9,7 @@
 ### v1.5.0 (May 16th, 2018)
 
 - Add Edit Order functionality
+
+### v1.5.1 (May 16th, 2018)
+
+- Add order filter functionality
