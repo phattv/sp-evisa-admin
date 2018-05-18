@@ -4,6 +4,7 @@ import {
   List,
   TextField,
   EmailField,
+  DateField,
 } from 'admin-on-rest';
 
 export const FeedbackList = props => (
@@ -15,6 +16,7 @@ export const FeedbackList = props => (
       <TextField source="phone" />
       <TextField source="subject" />
       <TextField source="message" />
+      <DateField source="created_at" showTime />
     </Datagrid>
   </List>
 );

@@ -35,6 +35,8 @@ const OrderList = props => (
       <TextField source="id" />
       <TextField source="price" />
       <TextField source="status" />
+      <DateField source="created_at" showTime />
+      <DateField source="updated_at" showTime />
       <ReferenceField label="Country" source="country_id" reference="countries">
         <TextField source="name" />
       </ReferenceField>
@@ -103,6 +105,8 @@ const OrderEdit = props => (
           { id: 'ignore', name: 'ignore' },
         ]}
       />
+      <DisabledInput source="created_at" />
+      <DisabledInput source="updated_at" />
       <DisabledInput source="quantity" />
       <DisabledInput source="country_id" />
       <DisabledInput source="type" />
