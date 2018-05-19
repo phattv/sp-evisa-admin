@@ -16,16 +16,31 @@ import {
   SimpleForm,
   SimpleShowLayout,
   TextField,
+  Filter,
 } from 'admin-on-rest';
+import { constants } from './constants';
 
-// TODO: Responsive, SimpleList
+const FeeFilter = props => (
+  <Filter {...props}>
+    <SelectInput
+      alwaysOn
+      source="type"
+      choices={[
+        { id: 'tourist', name: 'tourist' },
+        { id: 'business', name: 'business' },
+      ]}
+    />
+  </Filter>
+);
+
+// TODO: <List perPage> not working
 const FeeList = props => (
   <div>
     Legend:
     <p>1MS: 1 Month Single - 1MM: 1 Month Multiple</p>
     <p>3MS: 3 Month Single - 3MM: 3 Month Multiple</p>
     <p>6MM: 6 Month Multiple - 1YM: 1 Year Multiple</p>
-    <List {...props}>
+    <List {...props} filters={<FeeFilter />} perPage={constants.pageSize}>
       <Datagrid>
         <NumberField source="type" />
         <ReferenceField

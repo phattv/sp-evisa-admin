@@ -19,6 +19,7 @@ import {
 const OrderFilter = (props) => (
   <Filter {...props}>
     <SelectInput
+      alwaysOn
       source="status"
       choices={[
         { id: 'unpaid', name: 'unpaid' },
