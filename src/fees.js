@@ -26,6 +26,7 @@ const FeeFilter = props => (
       alwaysOn
       source="type"
       choices={[
+        { id: null, name: 'none' },
         { id: 'tourist', name: 'tourist' },
         { id: 'business', name: 'business' },
       ]}
@@ -33,7 +34,6 @@ const FeeFilter = props => (
   </Filter>
 );
 
-// TODO: <List perPage> not working
 const FeeList = props => (
   <div>
     Legend:

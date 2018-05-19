@@ -22,6 +22,7 @@ const OrderFilter = (props) => (
       alwaysOn
       source="status"
       choices={[
+        { id: null, name: 'none' },
         { id: 'unpaid', name: 'unpaid' },
         { id: 'paid', name: 'paid' },
         { id: 'ignore', name: 'ignore' },
