@@ -38,7 +38,6 @@ const OrderList = props => (
       <TextField source="price" />
       <TextField source="status" />
       <DateField source="created_at" showTime />
-      <DateField source="updated_at" showTime />
       <ReferenceField label="Country" source="country_id" reference="countries">
         <TextField source="name" />
       </ReferenceField>
@@ -46,23 +45,23 @@ const OrderList = props => (
       <TextField source="type" />
       <TextField source="purpose" />
       <TextField source="processing_time" />
+      <FunctionField
+        label="Contact"
+        render={record =>
+          record && record.contact && `Name: ${record.contact.name}\nEmail: ${
+            record.contact.email
+            }\nPhone: ${record.contact.phone}`
+        }
+        style={{
+          whiteSpace: 'pre-line',
+        }}
+      />
       <TextField source="airport" />
       <DateField source="arrival_date" />
       <DateField source="departure_date" />
       <TextField source="airport_fast_track" />
       <TextField source="car_pick_up" />
       <BooleanField source="private_visa_letter" />
-      <FunctionField
-        label="Contact"
-        render={record =>
-          record && record.contact && `Name: ${record.contact.name}\nEmail: ${
-            record.contact.email
-          }\nPhone: ${record.contact.phone}`
-        }
-        style={{
-          whiteSpace: 'pre-line',
-        }}
-      />
       <FunctionField
         label="Applicants"
         render={record => {
@@ -89,6 +88,7 @@ const OrderList = props => (
         }}
       />
       <TextField source="flight_number" />
+      <DateField source="updated_at" showTime />
       <EditButton />
     </Datagrid>
   </List>
