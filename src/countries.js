@@ -18,7 +18,7 @@ const CountryFilter = props => (
 const CountryList = props => (
   <List {...props} filters={<CountryFilter />} perPage={constants.pageSize}>
     <Datagrid>
-      <TextField source="id" />
+      <NumberField source="id" />
       <TextField source="iso" />
       <TextField source="name" />
       <NumberField source="phonecode" />

@@ -5,6 +5,7 @@ import {
   DisabledInput,
   Edit,
   EditButton,
+  Filter,
   List,
   NumberField,
   NumberInput,
@@ -16,7 +17,6 @@ import {
   SimpleForm,
   SimpleShowLayout,
   TextField,
-  Filter,
 } from 'admin-on-rest';
 import { constants } from './constants';
 
@@ -42,7 +42,7 @@ const FeeList = props => (
     <p>6MM: 6 Month Multiple - 1YM: 1 Year Multiple</p>
     <List {...props} filters={<FeeFilter />} perPage={constants.pageSize}>
       <Datagrid>
-        <NumberField source="type" />
+        <NumberField source="id" />
         <ReferenceField
           label="Country"
           source="country_id"

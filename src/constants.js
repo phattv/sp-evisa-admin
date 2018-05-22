@@ -2,4 +2,8 @@ const constants = {
   pageSize: 25,
 };
 
-export { constants };
+const datetimeLocale = {
+  locales: 'vi-VN',
+};
+
+export { constants, datetimeLocale };
