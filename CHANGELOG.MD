@@ -17,3 +17,7 @@
 ### v1.6.0 (May 21th, 2018)
 
 - Integrate search sort pagination, reorder fields
+
+### v1.6.1 (May 23th, 2018)
+
+- Update /orders list with filters and details view
