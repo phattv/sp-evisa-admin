@@ -17,6 +17,30 @@ import {
 } from 'admin-on-rest';
 import { datetimeLocale } from './constants';
 
+// Remove timezone: https://marmelab.com/admin-on-rest/Inputs.html#dateinput
+const _tz_offset = new Date().getTimezoneOffset() / 60;
+export const dateParser = v => {
+  const regexp = /(\d{4})-(\d{2})-(\d{2})/;
+  let match = regexp.exec(v);
+  if (match === null) return;
+
+  let year = match[1];
+  let month = match[2];
+  let day = match[3];
+
+  if (_tz_offset < 0) {
+    // negative offset means our picked UTC date got converted to previous day
+    let date = new Date(v);
+    date.setDate(date.getDate() + 1);
+    match = regexp.exec(date.toISOString());
+    year = match[1];
+    month = match[2];
+    day = match[3];
+  }
+  const d = [year, month, day].join('-');
+  return d;
+};
+
 const typeOptions = [
   { id: 'one_month_single', name: '1MS' },
   { id: 'one_month_multiple', name: '1MM' },
@@ -46,7 +70,7 @@ const OrderFilter = props => (
         { id: 'business', name: 'business' },
       ]}
     />
-    <DateInput source="created_at" />
+    <DateInput parse={dateParser} source="created_at" />
   </Filter>
 );
 
