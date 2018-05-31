@@ -32,6 +32,22 @@ const CustomDateTimeField = params => {
   );
 };
 
+const Divider = params => {
+  const { label } = params;
+  return (
+    <div
+      style={{
+        marginTop: 50,
+        paddingTop: 8,
+        borderTop: '1px solid black',
+        textTransform: 'uppercase',
+      }}
+    >
+      <strong>{label}</strong>
+    </div>
+  );
+};
+
 const CustomLabel = params => {
   const { label } = params;
   return (
@@ -51,4 +67,4 @@ const CustomLabel = params => {
   );
 };
 
-export { CustomDateField, CustomDateTimeField };
+export { CustomDateField, CustomDateTimeField, Divider };

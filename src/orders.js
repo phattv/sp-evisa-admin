@@ -15,7 +15,7 @@ import {
   SimpleForm,
   TextField,
 } from 'admin-on-rest';
-import { CustomDateField, CustomDateTimeField } from './components';
+import { CustomDateField, CustomDateTimeField, Divider } from './components';
 
 // Remove timezone: https://marmelab.com/admin-on-rest/Inputs.html#dateinput
 const _tz_offset = new Date().getTimezoneOffset() / 60;
@@ -107,8 +107,9 @@ const OrderList = props => (
 );
 
 const OrderEdit = props => (
-  <Edit title={'Edit'} {...props}>
+  <Edit title={'Edit Order (status only)'} {...props}>
     <SimpleForm>
+      <Divider label="Basic info" />
       <TextField source="id" />
       <TextField source="price" />
       <SelectInput
@@ -119,8 +120,6 @@ const OrderEdit = props => (
           { id: 'ignore', name: 'ignore' },
         ]}
       />
-      <CustomDateTimeField source="created_at" />
-      <CustomDateTimeField source="updated_at" />
       <ReferenceField label="Country" source="country_id" reference="countries">
         <TextField source="name" />
       </ReferenceField>
@@ -128,6 +127,10 @@ const OrderEdit = props => (
       <TextField source="type" />
       <ChipField source="purpose" />
       <ChipField source="processing_time" />
+      <CustomDateTimeField source="created_at" />
+      <CustomDateTimeField source="updated_at" />
+
+      <Divider label="Contact info" />
       <FunctionField
         label="Contact"
         render={record =>
@@ -166,13 +169,17 @@ const OrderEdit = props => (
           whiteSpace: 'pre-line',
         }}
       />
+
+      <Divider label="Flight info" />
       <TextField source="airport" />
+      <TextField source="flight_number" />
       <CustomDateField source="arrival_date" />
       <CustomDateField source="departure_date" />
+
+      <Divider label="Services" />
       <TextField source="airport_fast_track" />
       <TextField source="car_pick_up" />
       <BooleanField source="private_visa_letter" />
-      <TextField source="flight_number" />
     </SimpleForm>
   </Edit>
 );
