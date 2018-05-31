@@ -6,4 +6,7 @@ const datetimeLocale = {
   locales: 'vi-VN',
 };
 
-export { constants, datetimeLocale };
+const dateFormat = 'DD/MM/YYYY'
+const dateTimeFormat = 'DD/MM/YYYY HH:mm:ss A'
+
+export { constants, datetimeLocale, dateFormat, dateTimeFormat };
