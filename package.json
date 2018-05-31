@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "admin-on-rest": "^1.4.0",
+    "dayjs": "^1.6.4",
     "http-server": "^0.11.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
