@@ -1,8 +1,8 @@
 import React from 'react';
 import {
+  BooleanField,
   ChipField,
   Datagrid,
-  DateField,
   DateInput,
   Edit,
   EditButton,
@@ -15,7 +15,7 @@ import {
   SimpleForm,
   TextField,
 } from 'admin-on-rest';
-import { datetimeLocale } from './constants';
+import { CustomDateField, CustomDateTimeField } from './components'
 
 // Remove timezone: https://marmelab.com/admin-on-rest/Inputs.html#dateinput
 const _tz_offset = new Date().getTimezoneOffset() / 60;
@@ -80,11 +80,11 @@ const OrderList = props => (
       <NumberField source="id" />
       <NumberField source="price" />
       <ChipField source="status" />
-      <DateField source="created_at" showTime {...datetimeLocale} />
+      <CustomDateTimeField source="created_at" hideLabel />
       <ReferenceField label="Country" source="country_id" reference="countries">
         <TextField source="name" />
       </ReferenceField>
-      <NumberField source="quantity" />
+      <NumberField source="quantity" label="QTY" />
       <CustomTypeTextField source="type" />
       <ChipField source="purpose" />
       <ChipField source="processing_time" />
@@ -119,8 +119,8 @@ const OrderEdit = props => (
           { id: 'ignore', name: 'ignore' },
         ]}
       />
-      <DateField source="created_at" showTime {...datetimeLocale} />
-      <DateField source="updated_at" showTime {...datetimeLocale} />
+      <CustomDateTimeField source="created_at" />
+      <CustomDateTimeField source="updated_at" />
       <ReferenceField label="Country" source="country_id" reference="countries">
         <TextField source="name" />
       </ReferenceField>
@@ -167,11 +167,11 @@ const OrderEdit = props => (
         }}
       />
       <TextField source="airport" />
-      <DateField source="arrival_date" {...datetimeLocale} />
-      <DateField source="departure_date" {...datetimeLocale} />
+      <CustomDateField source="arrival_date" />
+      <CustomDateField source="departure_date" />
       <TextField source="airport_fast_track" />
       <TextField source="car_pick_up" />
-      <TextField source="private_visa_letter" />
+      <BooleanField source="private_visa_letter" />
       <TextField source="flight_number" />
     </SimpleForm>
   </Edit>
@@ -180,7 +180,7 @@ const OrderEdit = props => (
 const CustomTypeTextField = params => {
   const { record, source } = params;
   const type = typeOptions.find(option => option.id === record[source]);
-  return <span>{type.name}</span>;
+  return <span>{type && type.name}</span>;
 };
 
 export { OrderList, OrderEdit };
