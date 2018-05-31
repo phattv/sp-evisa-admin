@@ -21,3 +21,8 @@
 ### v1.6.1 (May 23th, 2018)
 
 - Update /orders list with filters and details view
+
+### v1.6.2 (May 31st, 2018)
+
+- Add CustomDateField, CustomDateTimeField, Divider components
+- Add /countries/:id view
