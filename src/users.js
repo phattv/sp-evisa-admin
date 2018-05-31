@@ -21,8 +21,8 @@ export const UserList = props => (
         <TextField source="name" />
       </ReferenceField>
       <TextField source="passport" />
-      <CustomDateField source="passport_expiry" />
-      <CustomDateField source="birthday" />
+      <CustomDateField source="passport_expiry" hideLabel />
+      <CustomDateField source="birthday" hideLabel />
       <CustomDateTimeField source="created_at" hideLabel />
     </Datagrid>
   </List>

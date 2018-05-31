@@ -1,8 +1,11 @@
 import React from 'react';
 import {
   Datagrid,
+  Edit,
+  EditButton,
   List,
   NumberField,
+  SimpleForm,
   TextField,
   TextInput,
   Filter,
@@ -22,8 +25,20 @@ const CountryList = props => (
       <TextField source="iso" />
       <TextField source="name" />
       <NumberField source="phonecode" />
+      <EditButton label="View"  />
     </Datagrid>
   </List>
 );
 
-export { CountryList }
+const CountryEdit = props => (
+  <Edit title={'Country (view only)'} {...props} disabled>
+    <SimpleForm>
+      <TextField source="id" />
+      <TextField source="iso" />
+      <TextField source="name" />
+      <TextField source="phonecode" />
+    </SimpleForm>
+  </Edit>
+);
+
+export { CountryList, CountryEdit };

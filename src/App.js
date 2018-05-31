@@ -5,7 +5,7 @@ import UserIcon from 'material-ui/svg-icons/action/account-box';
 import FeedbackIcon from 'material-ui/svg-icons/action/feedback';
 import OrderIcon from 'material-ui/svg-icons/action/receipt';
 
-import { CountryList } from './countries';
+import { CountryList, CountryEdit } from './countries';
 import { FeeList, FeeShow, FeeEdit, FeeCreate } from './fees';
 import { UserList } from './users';
 import { FeedbackList } from './feedback';
@@ -33,7 +33,7 @@ const App = () => (
       create={FeeCreate}
       remove={Delete}
     />
-    <Resource name="countries" list={CountryList} icon={CountryIcon} />
+    <Resource name="countries" list={CountryList} edit={CountryEdit} icon={CountryIcon} />
     <Resource name="users" list={UserList} icon={UserIcon} />
     <Resource name="feedback" list={FeedbackList} icon={FeedbackIcon} />
     <Resource name="orders" list={OrderList} edit={OrderEdit} icon={OrderIcon} />
