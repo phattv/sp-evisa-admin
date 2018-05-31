@@ -15,7 +15,7 @@ import {
   SimpleForm,
   TextField,
 } from 'admin-on-rest';
-import { CustomDateField, CustomDateTimeField } from './components'
+import { CustomDateField, CustomDateTimeField } from './components';
 
 // Remove timezone: https://marmelab.com/admin-on-rest/Inputs.html#dateinput
 const _tz_offset = new Date().getTimezoneOffset() / 60;

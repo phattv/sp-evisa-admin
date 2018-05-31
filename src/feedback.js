@@ -1,13 +1,12 @@
 import React from 'react';
 import {
   Datagrid,
-  DateField,
   EmailField,
   List,
   NumberField,
   TextField,
 } from 'admin-on-rest';
-import { datetimeLocale } from './constants';
+import { CustomDateTimeField } from './components';
 
 export const FeedbackList = props => (
   <List {...props}>
@@ -18,7 +17,7 @@ export const FeedbackList = props => (
       <TextField source="phone" />
       <TextField source="subject" />
       <TextField source="message" />
-      <DateField source="created_at" showTime {...datetimeLocale} />
+      <CustomDateTimeField source="created_at" hideLabel />
     </Datagrid>
   </List>
 );

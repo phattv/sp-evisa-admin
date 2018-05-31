@@ -1,14 +1,13 @@
 import React from 'react';
 import {
   Datagrid,
-  DateField,
   EmailField,
   List,
   NumberField,
   ReferenceField,
   TextField,
 } from 'admin-on-rest';
-import { datetimeLocale } from './constants';
+import { CustomDateField, CustomDateTimeField } from './components';
 
 export const UserList = props => (
   <List {...props}>
@@ -22,9 +21,9 @@ export const UserList = props => (
         <TextField source="name" />
       </ReferenceField>
       <TextField source="passport" />
-      <DateField source="passport_expiry" {...datetimeLocale} />
-      <DateField source="birthday" {...datetimeLocale} />
-      <DateField source="created_at" showTime {...datetimeLocale} />
+      <CustomDateField source="passport_expiry" />
+      <CustomDateField source="birthday" />
+      <CustomDateTimeField source="created_at" hideLabel />
     </Datagrid>
   </List>
 );
