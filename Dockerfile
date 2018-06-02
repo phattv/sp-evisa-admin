@@ -7,7 +7,7 @@ WORKDIR usr/src/evisa-admin
 # Install app dependencies
 COPY package.json /usr/src/evisa-admin
 COPY yarn.lock /usr/src/evisa-admin
-RUN yarn
+RUN yarn install --production
 
 # Bundle app source
 COPY . /usr/src/evisa-admin
