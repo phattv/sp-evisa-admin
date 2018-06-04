@@ -75,7 +75,11 @@ const OrderFilter = props => (
 );
 
 const OrderList = props => (
-  <List {...props} filters={<OrderFilter />}>
+  <List
+    {...props}
+    filters={<OrderFilter />}
+    sort={{ field: 'created_at', order: 'DESC' }}
+  >
     <Datagrid>
       <NumberField source="id" />
       <NumberField source="price" />
