@@ -5,28 +5,28 @@ import dayjs from 'dayjs';
 import { dateFormat, dateTimeFormat } from './constants';
 
 const CustomDateField = params => {
-  const { record, source } = params;
+  const { record, source, hideLabel } = params;
   const formattedDate = record[source]
     ? dayjs(record[source]).format(dateFormat)
     : 'N/A';
 
   return (
     <div>
-      {params.hideLabel === true ? null : <CustomLabel label={params.source} />}
+      {hideLabel === true ? null : <CustomLabel label={source} />}
       <span>{formattedDate}</span>
     </div>
   );
 };
 
 const CustomDateTimeField = params => {
-  const { record, source } = params;
+  const { record, source, hideLabel } = params;
   const formattedDateTime = record[source]
     ? dayjs(record[source]).format(dateTimeFormat)
     : 'N/A';
 
   return (
     <div>
-      {params.hideLabel === true ? null : <CustomLabel label={params.source} />}
+      {hideLabel === true ? null : <CustomLabel label={source} />}
       <span>{formattedDateTime}</span>
     </div>
   );

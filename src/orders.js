@@ -11,17 +11,23 @@ import {
   List,
   NumberField,
   ReferenceField,
+  Responsive,
   SelectInput,
   SimpleForm,
+  SimpleList,
   TextField,
 } from 'admin-on-rest';
-import { CustomDateField, CustomDateTimeField, Divider } from './components';
+import {
+  CustomDateField,
+  CustomDateTimeField,
+  Divider,
+} from './components';
 import {
   pageSize,
-  typeOptions,
+  processingTimeOptions,
   purposeOptions,
   statusOptions,
-  processingTimeOptions,
+  typeOptions,
 } from './constants';
 
 // Remove timezone: https://marmelab.com/admin-on-rest/Inputs.html#dateinput
@@ -75,48 +81,83 @@ const OrderList = props => (
     sort={{ field: 'created_at', order: 'DESC' }}
     perPage={pageSize}
   >
-    <Datagrid>
-      <NumberField source="id" />
-      <NumberField
-        source="price"
-        style={{
-          fontWeight: 'bold',
-        }}
-        options={{
-          style: 'currency',
-          currency: 'USD',
-          minimumFractionDigits: 0,
-        }}
-      />
-      <ChipField source="status" />
-      <CustomDateTimeField source="created_at" hideLabel />
-      <ReferenceField
-        label="Country"
-        source="country_id"
-        reference="countries"
-        sortable={false}
-      >
-        <TextField source="name" />
-      </ReferenceField>
-      <NumberField source="quantity" label="QTY" />
-      <CustomTypeTextField source="type" />
-      <ChipField source="purpose" />
-      <ChipField source="processing_time" />
-      <FunctionField
-        label="Contact"
-        render={record =>
-          record &&
-          record.contact &&
-          `Name: ${record.contact.name}\nEmail: ${
-            record.contact.email
-          }\nPhone: ${record.contact.phone}`
-        }
-        style={{
-          whiteSpace: 'pre-line',
-        }}
-      />
-      <EditButton />
-    </Datagrid>
+    <Responsive
+      small={
+        <SimpleList
+          // primaryText={record => `Price: ${record.price}`}
+          primaryText={record => (
+            <NumberField
+              record={record}
+              source="price"
+              style={{
+                fontWeight: 'bold',
+              }}
+              options={{
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+              }}
+            />
+          )}
+          secondaryText={record => (
+            <span
+              style={{
+                whiteSpace: 'pre-line',
+              }}
+            >
+              {parseContactObject(record.contact)}
+            </span>
+          )}
+          tertiaryText={record => (
+            <CustomDateField record={record} source="created_at" />
+          )}
+        />
+      }
+      medium={
+        <Datagrid>
+          <NumberField source="id" />
+          <NumberField
+            source="price"
+            style={{
+              fontWeight: 'bold',
+            }}
+            options={{
+              style: 'currency',
+              currency: 'USD',
+              minimumFractionDigits: 0,
+            }}
+          />
+          <ChipField source="status" />
+          <CustomDateTimeField source="created_at" hideLabel />
+          <ReferenceField
+            label="Country"
+            source="country_id"
+            reference="countries"
+            sortable={false}
+          >
+            <TextField source="name" />
+          </ReferenceField>
+          <NumberField source="quantity" label="QTY" />
+          <CustomTypeTextField source="type" />
+          <ChipField source="purpose" />
+          <ChipField source="processing_time" />
+          <FunctionField
+            label="Contact"
+            render={record =>
+              record &&
+              record.contact &&
+              `Name: ${record.contact.name}\nEmail: ${
+                record.contact.email
+              }\nPhone: ${record.contact.phone}`
+            }
+            style={{
+              whiteSpace: 'pre-line',
+            }}
+          />
+          <EditButton />
+        </Datagrid>
+      }
+    />
   </List>
 );
 
@@ -141,11 +182,7 @@ const OrderEdit = props => (
       <FunctionField
         label="Contact"
         render={record =>
-          record &&
-          record.contact &&
-          `Name: ${record.contact.name}\nEmail: ${
-            record.contact.email
-          }\nPhone: ${record.contact.phone}`
+          record && record.contact && parseContactObject(record.contact)
         }
         style={{
           whiteSpace: 'pre-line',
@@ -196,5 +233,8 @@ const CustomTypeTextField = params => {
   const type = typeOptions.find(option => option.id === record[source]);
   return <span>{type && type.name}</span>;
 };
+
+const parseContactObject = contact =>
+  `Name: ${contact.name}\nEmail: ${contact.email}\nPhone: ${contact.phone}`;
 
 export { OrderList, OrderEdit };
