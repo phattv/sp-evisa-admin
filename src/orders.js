@@ -19,7 +19,7 @@ import { CustomDateField, CustomDateTimeField, Divider } from './components';
 
 // Remove timezone: https://marmelab.com/admin-on-rest/Inputs.html#dateinput
 const _tz_offset = new Date().getTimezoneOffset() / 60;
-export const dateParser = v => {
+const dateParser = v => {
   const regexp = /(\d{4})-(\d{2})-(\d{2})/;
   let match = regexp.exec(v);
   if (match === null) return;
@@ -41,6 +41,7 @@ export const dateParser = v => {
   return d;
 };
 
+// options
 const typeOptions = [
   { id: 'one_month_single', name: '1MS' },
   { id: 'one_month_multiple', name: '1MM' },
@@ -49,30 +50,38 @@ const typeOptions = [
   { id: 'six_month_multiple', name: '5MM' },
   { id: 'one_year_multiple', name: '1MY' },
 ];
+const statusOptions = [
+  { id: 'paid', name: 'paid' },
+  { id: 'unpaid', name: 'unpaid' },
+  { id: 'refunded', name: 'refunded' },
+  { id: 'finished', name: 'finished' },
+  { id: 'ignore', name: 'ignore' },
+];
 
-const OrderFilter = props => (
-  <Filter {...props}>
-    <SelectInput
-      alwaysOn
-      source="status"
-      choices={[
-        { id: null, name: 'none' },
-        { id: 'unpaid', name: 'unpaid' },
-        { id: 'paid', name: 'paid' },
-        { id: 'ignore', name: 'ignore' },
-      ]}
-    />
-    <SelectInput source="type" choices={typeOptions} />
-    <SelectInput
-      source="purpose"
-      choices={[
-        { id: 'tourist', name: 'tourist' },
-        { id: 'business', name: 'business' },
-      ]}
-    />
-    <DateInput parse={dateParser} source="created_at" />
-  </Filter>
-);
+const OrderFilter = props => {
+  const nullOption = [
+    {
+      id: null,
+      name: 'none',
+    },
+  ];
+  const typeOptionsWithNull = nullOption.concat(statusOptions);
+
+  return (
+    <Filter {...props}>
+      <SelectInput alwaysOn source="status" choices={typeOptionsWithNull} />
+      <SelectInput source="type" choices={typeOptions} />
+      <SelectInput
+        source="purpose"
+        choices={[
+          { id: 'tourist', name: 'tourist' },
+          { id: 'business', name: 'business' },
+        ]}
+      />
+      <DateInput parse={dateParser} source="created_at" />
+    </Filter>
+  );
+};
 
 const OrderList = props => (
   <List
@@ -116,14 +125,7 @@ const OrderEdit = props => (
       <Divider label="Basic info" />
       <TextField source="id" />
       <TextField source="price" />
-      <SelectInput
-        source="status"
-        choices={[
-          { id: 'unpaid', name: 'unpaid' },
-          { id: 'paid', name: 'paid' },
-          { id: 'ignore', name: 'ignore' },
-        ]}
-      />
+      <SelectInput source="status" choices={statusOptions} />
       <ReferenceField label="Country" source="country_id" reference="countries">
         <TextField source="name" />
       </ReferenceField>
