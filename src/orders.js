@@ -16,6 +16,12 @@ import {
   TextField,
 } from 'admin-on-rest';
 import { CustomDateField, CustomDateTimeField, Divider } from './components';
+import {
+  typeOptions,
+  purposeOptions,
+  statusOptions,
+  processingTimeOptions,
+} from './constants';
 
 // Remove timezone: https://marmelab.com/admin-on-rest/Inputs.html#dateinput
 const _tz_offset = new Date().getTimezoneOffset() / 60;
@@ -41,23 +47,6 @@ const dateParser = v => {
   return d;
 };
 
-// options
-const typeOptions = [
-  { id: 'one_month_single', name: '1MS' },
-  { id: 'one_month_multiple', name: '1MM' },
-  { id: 'three_month_single', name: '3MS' },
-  { id: 'three_month_multiple', name: '3MM' },
-  { id: 'six_month_multiple', name: '5MM' },
-  { id: 'one_year_multiple', name: '1MY' },
-];
-const statusOptions = [
-  { id: 'paid', name: 'paid' },
-  { id: 'unpaid', name: 'unpaid' },
-  { id: 'refunded', name: 'refunded' },
-  { id: 'finished', name: 'finished' },
-  { id: 'ignore', name: 'ignore' },
-];
-
 const OrderFilter = props => {
   const nullOption = [
     {
@@ -71,13 +60,8 @@ const OrderFilter = props => {
     <Filter {...props}>
       <SelectInput alwaysOn source="status" choices={typeOptionsWithNull} />
       <SelectInput source="type" choices={typeOptions} />
-      <SelectInput
-        source="purpose"
-        choices={[
-          { id: 'tourist', name: 'tourist' },
-          { id: 'business', name: 'business' },
-        ]}
-      />
+      <SelectInput source="purpose" choices={purposeOptions} />
+      <SelectInput source="processing_time" choices={processingTimeOptions} />
       <DateInput parse={dateParser} source="created_at" />
     </Filter>
   );
@@ -91,7 +75,17 @@ const OrderList = props => (
   >
     <Datagrid>
       <NumberField source="id" />
-      <NumberField source="price" />
+      <NumberField
+        source="price"
+        style={{
+          fontWeight: 'bold',
+        }}
+        options={{
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 0,
+        }}
+      />
       <ChipField source="status" />
       <CustomDateTimeField source="created_at" hideLabel />
       <ReferenceField label="Country" source="country_id" reference="countries">
