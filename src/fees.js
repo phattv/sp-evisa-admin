@@ -18,7 +18,7 @@ import {
   SimpleShowLayout,
   TextField,
 } from 'admin-on-rest';
-import { constants } from './constants';
+import { pageSize } from './constants';
 
 const FeeFilter = props => (
   <Filter {...props}>
@@ -35,7 +35,7 @@ const FeeFilter = props => (
 );
 
 const FeeList = props => (
-  <List {...props} filters={<FeeFilter />} perPage={constants.pageSize}>
+  <List {...props} filters={<FeeFilter />} perPage={pageSize}>
     <Datagrid>
       <NumberField source="id" />
       <ReferenceField label="Country" source="country_id" reference="countries">

@@ -17,6 +17,7 @@ import {
 } from 'admin-on-rest';
 import { CustomDateField, CustomDateTimeField, Divider } from './components';
 import {
+  pageSize,
   typeOptions,
   purposeOptions,
   statusOptions,
@@ -72,6 +73,7 @@ const OrderList = props => (
     {...props}
     filters={<OrderFilter />}
     sort={{ field: 'created_at', order: 'DESC' }}
+    perPage={pageSize}
   >
     <Datagrid>
       <NumberField source="id" />
@@ -88,7 +90,12 @@ const OrderList = props => (
       />
       <ChipField source="status" />
       <CustomDateTimeField source="created_at" hideLabel />
-      <ReferenceField label="Country" source="country_id" reference="countries">
+      <ReferenceField
+        label="Country"
+        source="country_id"
+        reference="countries"
+        sortable={false}
+      >
         <TextField source="name" />
       </ReferenceField>
       <NumberField source="quantity" label="QTY" />

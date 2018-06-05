@@ -1,6 +1,4 @@
-const constants = {
-  pageSize: 25,
-};
+const pageSize = 25;
 
 /**
  * NOTES using dayjs library:
@@ -43,7 +41,7 @@ const statusOptions = [
   { id: 'ignore', name: 'ignore' },
 ];
 export {
-  constants,
+  pageSize,
   dateFormat,
   postgresDateFormat,
   dateTimeFormat,

@@ -10,7 +10,7 @@ import {
   TextInput,
   Filter,
 } from 'admin-on-rest';
-import { constants } from './constants';
+import { pageSize } from './constants';
 
 const CountryFilter = props => (
   <Filter {...props}>
@@ -19,7 +19,7 @@ const CountryFilter = props => (
 );
 
 const CountryList = props => (
-  <List {...props} filters={<CountryFilter />} perPage={constants.pageSize}>
+  <List {...props} filters={<CountryFilter />} perPage={pageSize}>
     <Datagrid>
       <NumberField source="id" />
       <TextField source="iso" />
