@@ -17,11 +17,7 @@ import {
   SimpleList,
   TextField,
 } from 'admin-on-rest';
-import {
-  CustomDateField,
-  CustomDateTimeField,
-  Divider,
-} from './components';
+import { CustomDateField, CustomDateTimeField, Divider } from './components';
 import {
   pageSize,
   processingTimeOptions,
@@ -84,7 +80,6 @@ const OrderList = props => (
     <Responsive
       small={
         <SimpleList
-          // primaryText={record => `Price: ${record.price}`}
           primaryText={record => (
             <NumberField
               record={record}

@@ -12,9 +12,11 @@ import {
   ReferenceField,
   ReferenceInput,
   required,
+  Responsive,
   SelectInput,
   Show,
   SimpleForm,
+  SimpleList,
   SimpleShowLayout,
   TextField,
 } from 'admin-on-rest';
@@ -34,22 +36,37 @@ const FeeFilter = props => (
   </Filter>
 );
 
+// TODO: country_id text field
 const FeeList = props => (
   <List {...props} filters={<FeeFilter />} perPage={pageSize}>
-    <Datagrid>
-      <NumberField source="id" />
-      <ReferenceField label="Country" source="country_id" reference="countries">
-        <TextField source="name" />
-      </ReferenceField>
-      <NumberField source="type" />
-      <NumberField source="one_month_single" label="1MS" />
-      <NumberField source="one_month_multiple" label="1MM" />
-      <NumberField source="three_month_single" label="3MS" />
-      <NumberField source="three_month_multiple" label="3MM" />
-      <NumberField source="six_month_multiple" label="6MM" />
-      <NumberField source="one_year_multiple" label="1YM" />
-      <EditButton />
-    </Datagrid>
+    <Responsive
+      small={
+        <SimpleList
+          primaryText={record => `Country id: ${record.country_id}`}
+          secondaryText={record => `Type: ${record.type}`}
+        />
+      }
+      medium={
+        <Datagrid>
+          <NumberField source="id" />
+          <ReferenceField
+            label="Country"
+            source="country_id"
+            reference="countries"
+          >
+            <TextField source="name" />
+          </ReferenceField>
+          <NumberField source="type" />
+          <NumberField source="one_month_single" label="1MS" />
+          <NumberField source="one_month_multiple" label="1MM" />
+          <NumberField source="three_month_single" label="3MS" />
+          <NumberField source="three_month_multiple" label="3MM" />
+          <NumberField source="six_month_multiple" label="6MM" />
+          <NumberField source="one_year_multiple" label="1YM" />
+          <EditButton />
+        </Datagrid>
+      }
+    />
   </List>
 );
 

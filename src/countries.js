@@ -3,12 +3,14 @@ import {
   Datagrid,
   Edit,
   EditButton,
+  Filter,
   List,
   NumberField,
+  Responsive,
   SimpleForm,
+  SimpleList,
   TextField,
   TextInput,
-  Filter,
 } from 'admin-on-rest';
 import { pageSize } from './constants';
 
@@ -20,13 +22,27 @@ const CountryFilter = props => (
 
 const CountryList = props => (
   <List {...props} filters={<CountryFilter />} perPage={pageSize}>
-    <Datagrid>
-      <NumberField source="id" />
-      <TextField source="iso" />
-      <TextField source="name" />
-      <NumberField source="phonecode" />
-      <EditButton label="View"  />
-    </Datagrid>
+    <Responsive
+      small={
+        <SimpleList
+          primaryText={record => record.name}
+          secondaryText={record => (
+            <span>
+              ISO: {record.iso} <br /> Phone code: {record.phonecode}
+            </span>
+          )}
+        />
+      }
+      medium={
+        <Datagrid>
+          <NumberField source="id" />
+          <TextField source="iso" />
+          <TextField source="name" />
+          <NumberField source="phonecode" />
+          <EditButton label="View" />
+        </Datagrid>
+      }
+    />
   </List>
 );
 
