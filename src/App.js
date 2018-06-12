@@ -25,6 +25,7 @@ const App = () => (
     dashboard={Dashboard}
     restClient={jsonServerRestClient(restClient)}
   >
+    <Resource name="orders" list={OrderList} edit={OrderEdit} icon={OrderIcon} />
     <Resource
       name="fees"
       list={FeeList}
@@ -36,7 +37,6 @@ const App = () => (
     <Resource name="countries" list={CountryList} edit={CountryEdit} icon={CountryIcon} />
     <Resource name="users" list={UserList} icon={UserIcon} />
     <Resource name="feedback" list={FeedbackList} icon={FeedbackIcon} />
-    <Resource name="orders" list={OrderList} edit={OrderEdit} icon={OrderIcon} />
   </Admin>
 );
 

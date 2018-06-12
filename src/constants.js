@@ -16,7 +16,7 @@ const typeOptions = [
   { id: 'three_month_single', name: '3MS' },
   { id: 'three_month_multiple', name: '3MM' },
   { id: 'six_month_multiple', name: '5MM' },
-  { id: 'one_year_multiple', name: '1MY' },
+  { id: 'one_year_multiple', name: '1YM' },
 ];
 const purposeOptions = [
   { id: 'tourist', name: 'Tourist' },

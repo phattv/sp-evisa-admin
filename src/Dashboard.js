@@ -1,10 +1,11 @@
 import React from 'react';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
+import { ViewTitle } from 'admin-on-rest/lib/mui';
 
 export default () => (
   <Card style={{ margin: '2em' }}>
-    <CardHeader title="Welcome to the administration" />
-    <CardText>Admin Panel for evisa-vn.com</CardText>
+    <ViewTitle title="Dashboard" />
+    <CardHeader title="Admin Panel for evisa-vn.com" />\
     <CardText>
       Legend:
       <p>1MS: 1 Month Single - 1MM: 1 Month Multiple</p>
