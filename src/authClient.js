@@ -1,3 +1,4 @@
+// https://github.com/marmelab/admin-on-rest/blob/893a01dedba77bf543b769ce9923028302ea3a95/docs/Tutorial.md#adding-a-login-page
 import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK } from 'admin-on-rest';
 
 export default (type, params) => {
