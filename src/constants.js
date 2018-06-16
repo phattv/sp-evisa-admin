@@ -23,7 +23,7 @@ const purposeOptions = [
   { id: 'business', name: 'Business' },
 ];
 const processingTimeOptions = [
-  { id: 'normal', name: 'Normal (Guaranteed 2 working days)' },
+  { id: 'normal', name: 'Normal (Guaranteed 1 working day)' },
   {
     id: 'urgent',
     name: 'Urgent (Guaranteed 4-8 working hours)',
