@@ -1,11 +1,6 @@
 import React from 'react';
 import { Admin, Delete, jsonServerRestClient, Resource } from 'admin-on-rest';
 
-import LanguageIcon from 'material-ui/svg-icons/action/language';
-import PersonIcon from 'material-ui/svg-icons/social/person';
-import FeedbackIcon from 'material-ui/svg-icons/action/feedback';
-import DollarIcon from 'material-ui/svg-icons/editor/attach-money';
-
 import { CountryList, CountryEdit } from './countries';
 import { FeeList, FeeShow, FeeEdit, FeeCreate } from './fees';
 import { UserList } from './users';
@@ -14,11 +9,12 @@ import { OrderList, OrderEdit } from './orders';
 
 import Dashboard from './Dashboard';
 import authClient from './authClient';
+import { restClient } from './constants';
 
-const restClient =
-  process.env.NODE_ENV === 'production'
-    ? 'http://api.evisa-vn.com'
-    : 'http://localhost:8001';
+import LanguageIcon from 'material-ui/svg-icons/action/language';
+import PersonIcon from 'material-ui/svg-icons/social/person';
+import FeedbackIcon from 'material-ui/svg-icons/action/feedback';
+import DollarIcon from 'material-ui/svg-icons/editor/attach-money';
 
 const App = () => (
   <Admin

@@ -55,6 +55,11 @@ const spaces = {
   xl: baseSpacingUnit * 4,
 };
 
+const restClient =
+  process.env.NODE_ENV === 'production'
+    ? 'http://api.evisa-vn.com'
+    : 'http://localhost:8001';
+
 export {
   pageSize,
   dateFormat,
@@ -67,4 +72,5 @@ export {
   colors,
   baseSpacingUnit,
   spaces,
+  restClient,
 };
