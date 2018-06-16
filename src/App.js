@@ -1,15 +1,16 @@
 import React from 'react';
 import { Admin, Delete, jsonServerRestClient, Resource } from 'admin-on-rest';
-import CountryIcon from 'material-ui/svg-icons/action/language';
-import UserIcon from 'material-ui/svg-icons/action/account-box';
+
+import LanguageIcon from 'material-ui/svg-icons/action/language';
+import PersonIcon from 'material-ui/svg-icons/social/person';
 import FeedbackIcon from 'material-ui/svg-icons/action/feedback';
-import OrderIcon from 'material-ui/svg-icons/action/receipt';
+import DollarIcon from 'material-ui/svg-icons/editor/attach-money';
 
 import { CountryList, CountryEdit } from './countries';
 import { FeeList, FeeShow, FeeEdit, FeeCreate } from './fees';
 import { UserList } from './users';
 import { FeedbackList } from './feedback';
-import { OrderList, OrderEdit } from './orders'
+import { OrderList, OrderEdit } from './orders';
 
 import Dashboard from './Dashboard';
 import authClient from './authClient';
@@ -25,7 +26,12 @@ const App = () => (
     dashboard={Dashboard}
     restClient={jsonServerRestClient(restClient)}
   >
-    <Resource name="orders" list={OrderList} edit={OrderEdit} icon={OrderIcon} />
+    <Resource
+      name="orders"
+      list={OrderList}
+      edit={OrderEdit}
+      icon={DollarIcon}
+    />
     <Resource
       name="fees"
       list={FeeList}
@@ -34,8 +40,13 @@ const App = () => (
       create={FeeCreate}
       remove={Delete}
     />
-    <Resource name="countries" list={CountryList} edit={CountryEdit} icon={CountryIcon} />
-    <Resource name="users" list={UserList} icon={UserIcon} />
+    <Resource
+      name="countries"
+      list={CountryList}
+      edit={CountryEdit}
+      icon={LanguageIcon}
+    />
+    <Resource name="users" list={UserList} icon={PersonIcon} />
     <Resource name="feedback" list={FeedbackList} icon={FeedbackIcon} />
   </Admin>
 );

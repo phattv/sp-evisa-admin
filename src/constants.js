@@ -40,6 +40,21 @@ const statusOptions = [
   { id: 'finished', name: 'finished' },
   { id: 'ignore', name: 'ignore' },
 ];
+
+const colors = {
+  cyan: '#00bcd4',
+};
+
+const baseSpacingUnit = 16;
+
+const spaces = {
+  xs: baseSpacingUnit / 4,
+  s: baseSpacingUnit / 2,
+  m: baseSpacingUnit,
+  l: baseSpacingUnit * 2,
+  xl: baseSpacingUnit * 4,
+};
+
 export {
   pageSize,
   dateFormat,
@@ -49,4 +64,7 @@ export {
   purposeOptions,
   statusOptions,
   processingTimeOptions,
+  colors,
+  baseSpacingUnit,
+  spaces,
 };
