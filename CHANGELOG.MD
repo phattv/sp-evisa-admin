@@ -23,3 +23,8 @@
 ### v1.6.3 (June 5th, 2018)
 - Enhance docker build speed
 - /orders sort by created_at descending by default
+
+### v1.6.4 (June 25th, 2018)
+- Add SimpleList view for mobile layout
+- Update order & icons for sidebar menus
+- /orders: add more status options, processing_time filter
