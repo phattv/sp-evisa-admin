@@ -28,3 +28,6 @@
 - Add SimpleList view for mobile layout
 - Update order & icons for sidebar menus
 - /orders: add more status options, processing_time filter
+
+### v1.6.5 (June 25th, 2018)
+- Change api.evisa-vn from http to https
