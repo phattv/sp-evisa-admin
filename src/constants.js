@@ -57,7 +57,7 @@ const spaces = {
 
 const restClient =
   process.env.NODE_ENV === 'production'
-    ? 'http://api.evisa-vn.com'
+    ? 'https://api.evisa-vn.com'
     : 'http://localhost:8001';
 
 export {
